@@ -27,4 +27,4 @@ npm run dev
 
 ## Todo
 
-- [] Test routes
+- [ ] Test routes
