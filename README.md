@@ -13,14 +13,14 @@
 
 ### DEV
 
-```
-yarn dev
-```
-
-or
-
-```
+```bash
 npm run dev
+```
+
+## Testing
+
+```bash
+npm run test
 ```
 
 ---
