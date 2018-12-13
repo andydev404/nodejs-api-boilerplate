@@ -17,7 +17,7 @@
 npm run dev
 ```
 
-## Testing
+### Testing
 
 ```bash
 npm run test
