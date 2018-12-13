@@ -29,7 +29,7 @@ const server = app.listen(process.env.PORT, err => {
   `);
 });
 
-export default {
+export {
   server,
   app
 };

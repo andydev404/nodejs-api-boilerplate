@@ -1,4 +1,5 @@
 import * as userValidation from './user.validation';
+import {isEmpty} from '../../utils/isEmpty';
 import sendEmail from '../../utils/mail';
 import moment from 'moment';
 
@@ -22,7 +23,7 @@ export const userSignup = async (req, res) => {
     $or: [{ username: userData.username }, { email: userData.email }]
   });
   if (user.length > 0) {
-    return res.status(400).json({ message: 'Username or email already exist' });
+    return res.status(409).json({ message: 'Username or email already exist' });
   }
 
   // Register user
@@ -48,7 +49,7 @@ export const userLogin = async (req, res) => {
 
   // check if user exist
   let user = await User.findOne({ username: userCredentials.username });
-  if (Object.values(user).length == 0) {
+  if (isEmpty(user)) {
     return res.status(404).json({ message: 'Invalid username or password' });
   }
 
@@ -94,7 +95,7 @@ export const resetUser = async (req,res) => {
 
   // check if user exist
   let user = await User.findOne({ email });
-  if (Object.values(user).length == 0) {
+  if (isEmpty(user)) {
     return res.status(404).json({ message: 'Invalid email' });
   }
 
