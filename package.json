@@ -1,6 +1,6 @@
 {
   "name": "simple_nodejs_api_boilerplate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple nodejs api boilerplate for start your project. ES6/ES7 supports",
   "main": "src/server.js",
   "scripts": {
