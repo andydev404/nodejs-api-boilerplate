@@ -8,6 +8,14 @@
 - Logging by [winston](https://www.npmjs.com/package/winston)
 - Tests by [supertest](https://www.npmjs.com/package/supertest) and [jest](https://jestjs.io)
 
+---
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/en/download/)
+- [NPM](https://docs.npmjs.com/getting-started/installing-node) or [Yarn](https://yarnpkg.com/en/docs/install)
+- [MongoDB](https://www.mongodb.com/download-center/community)
+
 ## Installation
 
 1. Clone the project `git clone https://github.com/andydev404/nodejs-api-boilerplate.git`.
