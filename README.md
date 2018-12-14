@@ -44,3 +44,4 @@ npm run test
 ## Todo
 
 - [ ] Test routes
+- [ ] Docker
