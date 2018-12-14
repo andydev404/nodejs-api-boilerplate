@@ -23,7 +23,7 @@ router.post('/login', userController.userLogin);
  * @desc   Generate token and send it to user for reset password
  * @access Public
  */
-router.get('/reset-user', userController.resetUser);
+router.post('/reset-user', userController.resetUser);
 
 
 /**
@@ -31,10 +31,10 @@ router.get('/reset-user', userController.resetUser);
  * @desc   reset user password
  * @access Public
  */
-router.get('/reset-password', userController.resetPassword);
+router.post('/reset-password', userController.resetPassword);
 
 /**
- * @route  POST /api/users/logout
+ * @route  GET /api/users/logout
  * @desc   Logout user
  * @access Private
  */

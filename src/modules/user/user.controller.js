@@ -91,7 +91,11 @@ export const userLogout = async (req, res) => {
  * @desc  Generate token and send it to user for reset password
  */
 export const resetUser = async (req,res) => {
-  let { email,name } = req.user;
+  let { email } = req.body;
+
+  if (isEmpty(email)) {
+    return res.status(400).json({ message: 'Invalid email' });
+  }
 
   // check if user exist
   let user = await User.findOne({ email });
@@ -100,7 +104,7 @@ export const resetUser = async (req,res) => {
   }
 
   try {
-    let { token_reset } = await user.generateResetToken
+    let { token_reset,name } = await user.generateResetToken
     sendEmail(email,name,'reset-password',token_reset);
     res.send({succes:true})
   } catch (err) {

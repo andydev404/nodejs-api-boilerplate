@@ -1,5 +1,6 @@
 require('dotenv').config();
 import request from 'supertest';
+import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import { User } from './user.model';
 import {app,server} from '../../server';
@@ -44,12 +45,18 @@ const checkIfUserExist = async (userData, done) =>{
 
 describe('Users',() => {
 
+  beforeAll(async done => {
+    await mongoose.connect(process.env.DB_URI_TEST,{ useNewUrlParser: true });
+    done();
+  })
+
   beforeEach(async done => {
     await User.remove({});
     done();
   });
 
   afterAll(() => {
+    mongoose.disconnect();
     server.close();
   })
 
@@ -233,6 +240,33 @@ describe('Users',() => {
           expect(res.status).toBe(200);
           expect(res.body.logingSuccess).toBeTruthy();
           expect(res.body).toHaveProperty('logingSuccess');
+          expect(typeof res.body).toBe('object');
+          done();
+        })
+    });
+    
+    test('If email is not provided for reset user, should be failed', async (done) => {
+      request(app)
+        .post('/api/v1/users/reset-user')
+        .send({})
+        .end((err,res) => {
+          expect(res.status).toBe(400);
+          expect(res.body).toHaveProperty('message');
+          expect(typeof res.body).toBe('object');
+          done();
+        })
+    });
+    
+    test('Send email for reset password', async (done) => {
+      await new User(dummyUsers[0]).save();
+      request(app)
+        .post('/api/v1/users/reset-user')
+        .send({
+          email: dummyUsers[0].email
+        })
+        .end((err,res) => {
+          expect(res.status).toBe(200);
+          expect(res.body.succes).toBeTruthy();
           expect(typeof res.body).toBe('object');
           done();
         })
