@@ -1,0 +1,23 @@
+vserion: '3'
+services:
+  app:
+    container_name: simple_boilerplate
+    
+    restart: always
+
+    build: .
+
+    ports:
+      - '3000:3000'
+
+    links:
+      - mongo
+
+    # Set environment variables
+    env_file:
+      - .env
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'
