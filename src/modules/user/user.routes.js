@@ -43,7 +43,7 @@ router.get('/logout', authenticationRequired, userController.userLogout);
 
 // ----------------> REMOVE FOR PRODUCTION MODE
 /**
- * @route  POST /api/users/ping
+ * @route  GET /api/users/ping
  * @desc   Testing auth - Temporal route
  * @access Private
  */
